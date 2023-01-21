@@ -240,20 +240,20 @@
           </div>
           <div class="column right">
             <div class="text">Message Me</div>
-            <form action="#">
+            <form name="anwar-contact-form">
               <div class="fields">
                 <div class="field name">
-                  <input type="text" placeholder="Name" required />
+                  <input type="text" placeholder="Name" required name="nama" />
                 </div>
                 <div class="field email">
-                  <input type="email" placeholder="Email" required />
+                  <input type="email" placeholder="Email" required name="email" />
                 </div>
               </div>
               <div class="field">
-                <input type="text" placeholder="Subject" required />
+                <input type="text" placeholder="Subject" required name="subject" />
               </div>
               <div class="field textarea">
-                <textarea cols="30" rows="10" placeholder="Describe project.." required></textarea>
+                <textarea cols="30" rows="10" placeholder="Describe project.." required name="pesan"></textarea>
                 <div class="button">
                   <button type="submit">Send Message</button>
                 </div>
@@ -296,6 +296,18 @@
         let progressHeight = (window.pageYOffset / totalHeight) * 100;
         progress.style.height = progressHeight + '%';
       };
+    </script>
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzfvXfhGRoeJSEYhRUT3WXC5oJomfIQ3x7E6Zjg14jGHpmz-jAt19QApPo3SfQEjLhn/exec';
+      const form = document.forms['anwar-contact-form'];
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+          .then((response) => console.log('Success!', response))
+
+          .catch((error) => console.error('Error!', error.message));
+      });
     </script>
   </body>
 </html>
